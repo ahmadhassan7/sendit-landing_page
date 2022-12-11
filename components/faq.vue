@@ -75,14 +75,14 @@ import { ref } from "vue";
 
 let faqItems = ref([
   // {
-  //   question: "How secured is Sendit?",
+  //   question: "How secured is SendIt?",
   //   answer:
-  //     "Sendit is super secured. We use the best security practices to protect your data. We use industry leading security technologies to protect your data.",
+  //     "SendIt is super secured. We use the best security practices to protect your data. We use industry leading security technologies to protect your data.",
   //   opened: false,
   // },
   {
-    question: "Is Sendit free to use?",
-    answer: "Yes Sendit is totally free to use.",
+    question: "Is SendIt free to use?",
+    answer: "Yes SendIt is totally free to use.",
     opened: false,
   },
   {
@@ -91,12 +91,12 @@ let faqItems = ref([
     opened: false,
   },
   {
-    question: "On which stores Sendit is avialable?",
-    answer: "Sendit is available on Playstore for android users and on Appstore for iOS users.",
+    question: "On which stores SendIt is avialable?",
+    answer: "SendIt is available on Playstore for android users and on Appstore for iOS users.",
     opened: false,
   },
   {
-    question: "How can I contact Sendit?",
+    question: "How can I contact SendIt?",
     answer:
       "You can contact us by emailing us at info@senditdelivery.co.za",
     opened: false,
