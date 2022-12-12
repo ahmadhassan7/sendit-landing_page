@@ -9,9 +9,15 @@
           class="lg:min-h-screen w-full lg:w-[50%] p-5 flex justify-center items-center"
         >
           <h1
-            class="text-4xl leading-[3rem] md:leading-[6rem] sm:text-5xl py-10 lg:py-0 md:text-4xl font-semibold text-center lg:text-left"
+           class="text-4xl leading-[3rem] md:leading-[3.5rem] sm:text-5xl py-10 lg:py-0 font-bold text-center lg:text-left"
+
           >
-            We order, collect and deliver your essential meat and groceries right to your doorstep
+            We <span class="text-green-600">Order</span>,<span
+              class="text-green-600"
+              >Collect</span
+            >
+            and <span class="text-green-600">Deliver</span> your essential meat
+            and groceries right to your doorstep
           </h1>
         </div>
         <div
