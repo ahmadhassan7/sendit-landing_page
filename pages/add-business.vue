@@ -1,7 +1,7 @@
 <template>
   <Navbar />
   <div
-    class="sm:px-6 lg:px-8 max-w-screen-xl min-h-screen px-4 py-16 mx-auto text-white"
+    class="sm:px-6 lg:px-8 max-w-screen-xl min-h-screen h-auto px-4 py-16 mx-auto text-white"
   >
     <div class="mx-auto text-center">
       <h1 class="sm:text-3xl md:text-5xl text-2xl font-bold">
@@ -9,7 +9,8 @@
       </h1>
 
       <p class="max-w-lg mx-auto mt-4 text-gray-500">
-        Join our community of South Africa's finest food businesses and get access to get your business online with SendIt
+        Join our community of South Africa's finest food businesses and get
+        access to get your business online with SendIt
       </p>
     </div>
 
@@ -54,15 +55,65 @@
         </div>
       </div>
       <div>
-        <label for="category" class="sr-only">Category of business e.g Meat shop, Burgers joint</label>
-        <div>
-          <input
-            type="text"
-            v-model="category"
-            class="focus:outline-none bg-zinc-800 focus-within:ring-0 w-full p-4 pr-12 text-sm border-0 rounded-lg shadow-sm outline-none"
-            placeholder="Enter category of business"
-          />
-        </div>
+        <label for="category" class="sr-only"
+          >Category of business e.g Meat shop, Burgers joint</label
+        >
+        <HeadlessListbox v-model="selectedCategory">
+          <div class="relative mt-1">
+            <HeadlessListboxButton
+              class="relative w-full cursor-default rounded-lg bg-zinc-800 py-4 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+            >
+              <span class="block truncate">{{ selectedCategory.name }}</span>
+              <span
+                class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
+              >
+                <ChevronUpDownIcon
+                  class="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </span>
+            </HeadlessListboxButton>
+
+            <transition
+              leave-active-class="transition duration-100 ease-in"
+              leave-from-class="opacity-100"
+              leave-to-class="opacity-0"
+            >
+              <HeadlessListboxOptions
+                class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-zinc-800 text-zinc-300 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+              >
+                <HeadlessListboxOption
+                  v-slot="{ active, selected }"
+                  v-for="category in categories"
+                  :key="category.name"
+                  :value="category"
+                  as="template"
+                >
+                  <li
+                    :class="[
+                      active ? 'bg-zinc-700 text-green-600' : 'text-zinc-300',
+                      'relative cursor-default select-none py-2 pl-10 pr-4',
+                    ]"
+                  >
+                    <span
+                      :class="[
+                        selected ? 'font-medium' : 'font-normal',
+                        'block truncate',
+                      ]"
+                      >{{ category.name }}</span
+                    >
+                    <span
+                      v-if="selected"
+                      class="absolute inset-y-0 left-0 flex items-center pl-3 text-green-600"
+                    >
+                      <CheckIcon class="h-5 w-5" aria-hidden="true" />
+                    </span>
+                  </li>
+                </HeadlessListboxOption>
+              </HeadlessListboxOptions>
+            </transition>
+          </div>
+        </HeadlessListbox>
       </div>
 
       <div>
@@ -97,10 +148,11 @@
           ></textarea>
         </div>
       </div>
+
       <div class="flex items-center justify-end">
         <button
           type="submit"
-          class="hover:bg-green-700 inline-block px-5 py-3 text-sm font-medium text-white bg-green-600 rounded-lg"
+          class="hover:bg-green-700 w-full inline-block px-5 py-3 text-sm font-medium text-white bg-green-600 rounded-lg"
         >
           Submit
         </button>
@@ -175,6 +227,7 @@
 import { addDoc, collection, getDocs, query, where } from "@firebase/firestore";
 import { db } from "~~/firebase/config";
 import Navbar from "~~/layouts/navbar.vue";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 import {
   getStorage,
   ref as sRef,
@@ -205,11 +258,25 @@ let phone = ref();
 let about = ref();
 let logo = ref("");
 let isOpen = ref(false);
+let categories = ref([]);
+const selectedCategory = ref({
+  name: "Select Category of your business",
+});
+let getCategories = async () => {
+  const querySnapshot = await getDocs(collection(db, "foodcategories"));
+  querySnapshot.forEach((doc) => {
+    categories.value.push({
+      name: doc.data().categoryname,
+    });
+  });
+  selectedCategory.value = categories.value[0];
+};
+getCategories();
 let submit = async () => {
   let data = {
     storename: name.value,
     email: email.value,
-    categoryname: category.value,
+    categoryname: selectedCategory.value.name,
     phonenumber: phone.value,
     address: location.value,
     about: about.value,
@@ -327,6 +394,9 @@ let getLink = async (e) => {
     );
   }, 1000);
 };
+
+// const selectedPerson = ref(people[0]);
+
 function closeModal() {
   isOpen.value = false;
 }

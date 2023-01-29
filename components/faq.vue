@@ -77,7 +77,7 @@ let faqItems = ref([
   // {
   //   question: "How secured is SendIt?",
   //   answer:
-  //     "SendIt is super secured. We use the best security practices to protect your data. We use industry leading security technologies to protect your data.",
+  //     "Sendit is super secured. We use the best security practices to protect your data. We use industry leading security technologies to protect your data.",
   //   opened: false,
   // },
   {
@@ -86,7 +86,7 @@ let faqItems = ref([
     opened: false,
   },
   {
-    question: "Where is SendIT available?",
+    question: "Where is SendIt available?",
     answer: "SendIt is available in South Africa only. Our targeted area's are Fordsburg and Mayfair included.",
     opened: false,
   },

@@ -10,9 +10,10 @@
         Join our community of South Africa's finest food businesses and get
         access to get your business online with SendIt
       </p>
-     <NuxtLink
+      <NuxtLink
         to="/add-business"
-        class="px-4 py-2 bg-black border border-green-500 text-green-500 hover:bg-green-500 hover:text-white duration-300 ease-in-out rounded-full">
+        class="px-4 py-2 bg-black border border-green-500 text-green-500 hover:bg-green-500 hover:text-white duration-300 ease-in-out rounded-full"
+      >
         Register your business
       </NuxtLink>
     </div>

@@ -9,8 +9,7 @@
           class="lg:min-h-screen w-full lg:w-[50%] p-5 flex justify-center items-center"
         >
           <h1
-           class="text-4xl leading-[3rem] md:leading-[3.5rem] sm:text-5xl py-10 lg:py-0 font-bold text-center lg:text-left"
-
+            class="text-4xl leading-[3rem] md:leading-[3.5rem] sm:text-5xl py-10 lg:py-0 font-bold text-center lg:text-left"
           >
             We <span class="text-green-600">Order</span>,<span
               class="text-green-600"

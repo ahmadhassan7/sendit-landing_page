@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "0.9.72",
+    "@heroicons/vue": "^2.0.14",
+    "@nuxtjs/robots": "^3.0.0",
     "@tailwindcss/forms": "^0.5.3",
     "firebase": "^9.15.0",
     "maska": "^2.1.1",

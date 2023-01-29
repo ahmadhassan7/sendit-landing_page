@@ -4,7 +4,12 @@ export default defineNuxtConfig({
   build: {
     transpile: ["@fawmi/vue-google-maps"],
   },
-  modules: ["nuxt-headlessui"],
+  modules: ["nuxt-headlessui", "@nuxtjs/robots"],
+  robots: {
+    UserAgent: "*",
+    Disallow: "/",
+  },
+
   headlessui: {
     prefix: "Headless",
   },
